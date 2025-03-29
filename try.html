@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YOU ARE THE ONLY EXCEPTION, BIANCHE</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-image: url("spman.jpg"); /* Add background image */
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .player-container {
+      width: 400px;
+      background-color: #181818;
+      border-radius: 15px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .album-art {
+      width: 100%;
+      max-width: 300px;
+      height: 300px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .song-info {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .song-info h2 {
+      font-size: 1.8em;
+      margin: 0;
+    }
+
+    .song-info p {
+      font-size: 1.1em;
+      margin: 5px 0;
+      color: #b3b3b3;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 5px;
+      background: #555;
+      border-radius: 5px;
+      margin: 15px 0;
+      position: relative;
+    }
+
+    .progress {
+      height: 5px;
+      background: #1ed760;
+      width: 0%;
+      border-radius: 5px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .button-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .play-btn, .skip-btn {
+      background-color: #1ed760;
+      color: white;
+      border: none;
+      width: 60px;
+      height: 60px;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .lyrics-container {
+      width: 400px;
+      height: 500px;
+      overflow-y: auto;
+      text-align: left;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+
+    .next-page-buttongg {
+    position: absolute;
+    top: 20px;
+    left: 20px; /* Changed from right to left */
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d13f5c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+  </style>
+</head>
+<body>
+
+  <div class="player-container">
+    <img src="28.jpg" class="album-art" alt="Album Art">
+    <div class="song-info">
+      <h2>The Only Exception</h2>
+      <p>Paramore</p>
+      <p>I dedicate this song to you because you are the only exception for me. I've come to appreciate this song even more because it reminds me of the fun times we had when we are at the videoke.</p>
+    </div>
+
+    <div class="controls">
+      <audio id="myAudio">
+        <source src="Paramore_ The Only Exception [OFFICIAL VIDEO].mp3" type="audio/mpeg">
+      </audio>
+
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+
+      <div class="button-wrapper">
+        <button id="backwardBtn" class="skip-btn"><-</button>
+        <button id="playPauseBtn" class="play-btn">▶</button>
+        <button id="forwardBtn" class="skip-btn">-></button>
+      </div>
+    </div>
+  </div>
+  <a href="homepage.html" class="next-page-buttongg">Back</a>  </div>
+  <script>
+    var audio = document.getElementById("myAudio");
+    var playPauseBtn = document.getElementById("playPauseBtn");
+    var backwardBtn = document.getElementById("backwardBtn");
+    var forwardBtn = document.getElementById("forwardBtn");
+    var progressBar = document.getElementById("progress");
+    var isPlaying = false;
+
+    playPauseBtn.addEventListener("click", function() {
+      if (isPlaying) {
+        audio.pause();
+        playPauseBtn.textContent = "▶";
+      } else {
+        audio.play();
+        playPauseBtn.textContent = "❚❚";
+      }
+      isPlaying = !isPlaying;
+    });
+
+    backwardBtn.addEventListener("click", function() {
+      audio.currentTime = Math.max(0, audio.currentTime - 10);
+    });
+
+    forwardBtn.addEventListener("click", function() {
+      audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+    });
+
+    audio.addEventListener("timeupdate", function() {
+      var progress = (audio.currentTime / audio.duration) * 100;
+      progressBar.style.width = progress + "%";
+    });
+  </script>
+</body>
+</html>

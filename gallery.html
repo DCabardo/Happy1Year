@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUR MEMORIES, LOVE</title>
+    <style>
+        .body{
+            background-color: #d13f5c;
+        }
+        /* ... (Existing styles for the letter) ... */
+
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom right, #f7d5e0, #f8c2d9);
+            margin: 0;
+            overflow: hidden;
+            perspective: 1000px;
+            background-image: url("sp1.jpg"); /* Add background image */
+        }
+
+        .gallery {
+            display: grid;  /* Use CSS Grid */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+            gap: 20px; /* Spacing between images */
+            padding: 20px; /* Padding around the gallery */
+            max-width: 1200px; /* Optional: limit gallery width */
+            margin: 0 auto; /* Center the gallery */
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.6s; /* Adjust as needed */
+            transform-style: preserve-3d; /* Important for flipping */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            backface-visibility: hidden; /* Prevent seeing the back */
+        }
+
+        .gallery-item.flipped img {
+            transform: rotateY(180deg); /* Rotate the image */
+        }
+        
+
+        .gallery-item .description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Cover the entire item */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column; /* Use column for vertical alignment */
+    /* Remove justify-content: center; */ /* Allow content to flow */
+    align-items: center;
+    transition: opacity 0.6s, transform 0.6s;
+    overflow-y: auto; /* Add scrollbar if content overflows */
+}
+
+        .gallery-item:hover .description {
+            opacity: 1;
+        }
+
+        .close-button { /* Style for the close button */
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: rgb(253, 29, 152);
+            font-size: 2em;
+            cursor: pointer;
+            z-index: 1001; /* Above the image */
+            display: none; /* Initially hidden */
+        }
+
+        .gallery-item .description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* Height adjusts to content */
+    max-height: 100%; /* Prevents overflow */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    transition: opacity 0.6s, transform 0.6s;
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis (...) for overflow */
+    -webkit-line-clamp: 19; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    word-break: break-word; /* Prevents long words from breaking layout */
+}
+
+        .gallery-item.flipped .description {
+    opacity: 1;
+    transform: rotateY(0deg);
+}
+        
+        .next-page-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #d13f5c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px; /* Space from the message */
+            transition: background-color 0.3s ease;
+        }
+
+        .next-page-button:hover {
+            background-color: #c03651;
+        }
+        .next-page-buttongg {
+    position: absolute;
+    top: 20px;
+    left: 20px; /* Changed from right to left */
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d13f5c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <div class="gallery">
+            
+            <div class="gallery-item" onclick="toggleFlip(this)">
+                <img src="1.jpg" alt="Image 1">
+                <div class="description">Our first conversation nung Feb 16 2024 hihi ate pa tawag mo sakin niyan, ngayon love na hihihihi. pinag usapan din natin dyan yung tinanong mo sa kausap mo rin sa tinder if wala ba talagang reply, dati wala lang sakin but ngayon huhu ewan ko nagselos ako bigla kahit di mo pa naman ako kilala non.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="2.jpg" alt="Image 2">
+                <div class="description">Unang pagyayabang ko sayo HAHAHAHAHAH inaasar kita kasi kahit anong gawin mo hindi ka mananalo sakin sa 8ball. natatawa parin ako sa asar ko na kahit gumamit ka pa ng ruler love hindi mo ako matatalo HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+        
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="3.jpg" alt="Image 3">
+                <div class="description">Unang beses na maasar ka sakin hehe pikon ka love? HAHAHAHAHAHAHAHAHAH. anong akala mo love porket cute ka e pagbibigyan kita manalo?????????????? NO NO NO NO HAHAHAHAHAHHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH. TALOOOOOOOOOOOOOO</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="5.jpg" alt="Image 4">
+                <div class="description">Ito na yung lumipat tayo sa ig love kasi hindi us sanay na walang reply at reaction sa app na pinanggalingan natin, dito narin nag start mag develop yung tingin ko sayo kasi unti-unti na akong nahuhulog. unang beses mo ako tulugan niyan huhu kakausap palang tinulugan na.</div>
+                <span class="close-button">&times;</span>
+            </div>
+            
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="1stkiss.jpg" alt="Image 5">
+                <div class="description">This is ur first time na humingi ng kiss sakin, tapos naadik ka na sa kiss ko. Naaalala ko pa na hindi mo ako kinikiss everytime na manghihingi ako huhu paka damot mo non love.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="6.jpg" alt="Image 6">
+                <div class="description">Ito yung pinapaalam mo na sa'kin san ka nakatira, nag kanda ligaw pa ako sa pag search love kasi yung sinearch ko ay hindi ka ron kaya tinuro turo mo pa napatingin ka na rin sa map para matulungan ako HAHAHAHHAA.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="7.jpg" alt="Image 7">
+                <div class="description">hehe ayun nakita ko na yung papasok sa inyo but and days kasi hindi ako pwede pumunta sa tapat ng bahay niyo.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="8.jpg" alt="Image 8">
+                <div class="description">Cinocompare ko height natin tapos napansin ko na hindi pala ako sobrang tangkad sayo huhu pero okay lang sakto naman sa forehead kiss.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="1st love u.jpg" alt="Image 9">
+                <div class="description">Ur first time na mag i love u sakin pero hindi pa yan yung sincere kasi ang sincere for u ay yung i luv u, pero ayan yung nag start ka mag sabi sakin niyan.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="10.jpg" alt="Image 10">
+                <div class="description">Ito ni screenshot ko kasi may affinity na us hehehe kilig na kilig ako niyan kasi kapag nasa loading screen na nag sshow na yung bia's partner ndjehehehhehehe.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="11.jpg" alt="Image 11">
+                <div class="description">Ito yung time na nasa mindanao kayo love and wala kang chat sakin kasi walang signal, tapos bigla ako kinilig nung nakita ko yan kasi nag update ka sa notes para issend nalang sakin kapag may signal ka na. grabe yung kilig ko niyan love sobrang naaappreciate ko yan.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="12.jpg" alt="Image 12">
+                <div class="description">hehe sinendan mo ako miss you na gawa sa fries, random siya but ang cute kasi ikaw gumawa.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="4.jpg" alt="Image 13">
+                <div class="description">fav kong wallpaper dati hehe gands kasi lighting.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="15.jpg" alt="Image 14">
+                <div class="description">naisipan ko mag gawa nito dati kasi wala ako magawa, tulog ka na niyan love e tapos di ako makatulog kaya ayan nag gawa ako para may pic na us together.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="14.jpg" alt="Image 15">
+                <div class="description">ang ganda ng kinalabasan hehe sinend ko agad sa'yo kasi naeexcite me sa reaction mo tapos tinawanan mo ako huhu sakit ah.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="16.jpg" alt="Image 16">
+                <div class="description">unang landi ko sa notes kwakwkakkwkwkakakwkkekeke.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="9.jpg" alt="Image 17">
+                <div class="description">Ito naman yung sinend mo sakin laman ng notes mo, tapos nakita ko yan huhu ang cute kasi nililista mo mga gusto mong katangian ko.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="17.jpg" alt="Image 18">
+                <div class="description">First lockscreen mo na pic ko hehe sobrang kilig ko niyan kasi ang ganda ng pagkakakuha ko niyan kaso blurred tapos bumagay sa lockscreen mo.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="18.jpg" alt="Image 19">
+                <div class="description">Itooo hudhejsjshshshh hindi parin ako maka get over dito love, ito yung sinama mo ako sa acknowledgement djejeje I'm kinikilig parin kapag naaalala yan.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="19.jpg" alt="Image 20">
+                <div class="description">ito naman yung nag story ka ng vm ko nakakahiya pero okay lang kasi napag usapan naman sa gc niyo hehehehe.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="20.jpg" alt="Image 21">
+                <div class="description">This is my first time na makatanggap ng letter nung birthday ko, nasa first line palang ako nung binabasa ko yan love pero nagiging emotional na ako. The best birthday gift ever.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="22.jpg" alt="Image 22">
+                <div class="description">Ito yung naisipan mo mag gawa ng letter for me kasi nakita mo kung gaano kahalaga sakin yung birthday gift mo sakin, hanggang ngayon love binabasa ko parin yan isa isa kasi sobrang saya ko kapag nababasa mga letter mo sakin and yung birthday gift.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="23.jpg" alt="Image 23">
+                <div class="description">Isa naman to sa fav ko na pic mo kasi may initial ko tapos may heart sa tabi kekekek ini screenshot ko pa story mo kasi gusto ko Ilockscreen but ayaw mo isend kaya nag screenshot nalang ako.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="21.jpg" alt="Image 24">
+                <div class="description">1st time ko sa story mo, bukod yung sa shinoshow mo palang ako sa cp mo while naka video since ayan yung may username ko tapos pic ko hihi kiligggg.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="24.jpg" alt="Image 25">
+                <div class="description">Ito naman yung 1st meet natin love December 27 2024, pinagcocompare natin kulay natin pero hindi pala ako sobrang itim kumpara sayo, akala ko magiging milo at gatas tayo.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="25.jpg" alt="Image 26">
+                <div class="description">1st pic ko with you since ayaw mo po isend sakin yung mirror pic natin kahit gustong gusto ko yun iwallpaper, gusto ko rin kasi ng maraming mirror pic natin love. binigay ko rin sayo si panganay that time and sobrang saya ko kasi sinasama mo siya kahit saan and katabi sa higaan.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="26.jpg" alt="Image 27">
+                <div class="description">Shoes check kekekeke, hindi madumi yang shoes ko love ah ganan lang talaga pag ka white niya.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="27.jpg" alt="Image 28">
+                <div class="description">2nd date natin love January 13 2025 binigay ko rin sayo si bunso that time kasi gusto mo and ayoko rin magkalayo yung magkapatid, malapit mo na maubos pagkain mo nito love hehe I'm happy.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="29.jpg" alt="Image 29">
+                <div class="description">Nilagyan mo ako niyan ng stickers sa kamay and sa bicep hehehe tapos natatanggal nang natatanggal yung sticker kaya naisipan kong ilagay sa wallet ko kasama ng 1x1 pic mo kasi sobrang naaappreciate ko lahat.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="1st karaoke.jpg" alt="Image 30">
+                <div class="description">1st videoke natin, 1st lp. dito ko nakita yung sobrang clingy na side mo love, i love it and sana wag mo siya itago sakin everytime na magkasama us kasi i love ittt.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="28.jpg" alt="Image 31">
+                <div class="description">Ito yung time na pauwi na us love and hindi us nakapag pic kaya nag pic us sa jeep, ang kulit pa natin niyan kasi kiss us nang kiss kahit ayaw mo sa pda but wala naman nakatingin kaya hehehehe, ito rin yung fav ko na pic natin love kaya pfp ko siya now sa ig hehe.</div>
+                <span class="close-button">&times;</span>
+            </div>
+
+            <div class="gallery-item" onclick="toggleFlip(this)">  <img src="last meet.jpg" alt="Image 32">
+                <div class="description">3rd meet natin love Januart 27 2025 and 1st time ko makasama friends mo. mukha akong malungkot niyan kasi malungkot talaga ako because uuwi nanaman us huhu.</div>
+                <span class="close-button">&times;</span>
+            </div>
+            
+            </div>
+            <a href="1yearhehe.html" class="next-page-buttongg">Back</a>  </div>
+    </div>
+    <script>
+        function toggleFlip(element) {
+            element.classList.toggle("flipped");
+        }
+    </script>
+</body>
+</html>

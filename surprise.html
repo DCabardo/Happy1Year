@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY ANNIVERSARY, LOVE</title>
+    <style>
+       body {
+            background-color: #f7d5e0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            position: absolute; /* Key for scattering */
+            width: 100%;
+            height: 100%;
+        }
+        .word {
+            position: absolute;
+            font-size: 2em;
+            color: #d13f5c;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+            white-space: nowrap; /* Prevent words from wrapping */
+        }
+
+        .next-page-buttong {
+            position: absolute;
+    top: 20px;
+    left: 20px; /* Changed from right to left */
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d13f5c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+
+    <script>
+        const container = document.querySelector('.container');
+        const words = ["i love youu", "i love youu 3000", "i lovee youu in every universe","i love youu so much","i love youu more","mahal na mahal kita"];
+        const numWords = 100;
+
+        const usedPositions = []; // Keep track of word positions
+
+        for (let i = 0; i < numWords; i++) {
+            const wordIndex = i % words.length;
+            const word = document.createElement('span');
+            word.classList.add('word');
+            word.textContent = words[wordIndex];
+
+            let x, y, overlap;
+            let attempts = 0; // Limit attempts to find a non-overlapping position
+
+            do {
+                x = Math.random() * document.documentElement.clientWidth;
+                y = Math.random() * document.documentElement.clientHeight;
+                overlap = false;
+
+                // Check for overlap with existing words (simple bounding box check)
+                for (const pos of usedPositions) {
+                    const dx = Math.abs(x - pos.x);
+                    const dy = Math.abs(y - pos.y);
+                    const minDistance = 50; // Adjust this value (minimum distance between words)
+
+                    if (dx < minDistance && dy < minDistance) {
+                        overlap = true;
+                        break; // No need to check other positions
+                    }
+                }
+                attempts++;
+            } while (overlap && attempts < 50); // Try up to 50 times
+
+            if (!overlap) { // Only add the word if it doesn't overlap
+                word.style.left = `${x}px`;
+                word.style.top = `${y}px`;
+
+                const delay = Math.random() * 2;
+                word.style.animationDelay = `${delay}s`;
+
+                container.appendChild(word);
+                usedPositions.push({ x, y }); // Store the word's position
+            }
+
+            if (attempts === 50) {
+                console.warn("Could not find a non-overlapping position after 50 attempts.");
+            }
+        }
+    </script>
+  <a href="1yearhehe.html" class="next-page-buttong">Back</a>  </div>
+</body>
+</html>

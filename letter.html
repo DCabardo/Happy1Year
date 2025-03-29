@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY ANNIVERSARY, LOVE</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #f7d5e0, #e0c3cf);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #5c2a36;
+            overflow: hidden;
+            background-image: url("dark.jpg"); /* Add background image */
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Prevent image repetition */
+            background-position: center; /* Center the image */
+        }
+
+        
+
+        .letter {
+            width: 400px;
+            height: 300px;
+            transition: transform 0.8s ease; /* Only transform transition */
+            border-radius: 10px;
+        
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.8s ease;
+            transform-style: preserve-3d;
+        }
+
+        .letter-front, .letter-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Fill the parent */
+    height: 100%; /* Fill the parent */
+    border-radius: 10px;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Padding now included in width/height */
+    box-sizing: border-box;  /* Key change */
+    transform: rotateX(0deg); /* Back stays upright */
+}
+
+        .letter-front {
+            background-image: url("9466324.png");
+            background-size: cover;
+            background-position: center;
+            transform: rotateY(0deg);
+            transform-origin: top;
+        }
+
+        .letter-front p { /* Style the front text */
+            font-size: 1.5em; /* Adjust font size as needed */
+            color: #5c2a36; /* Example color */
+            text-align: center; /* Center the text */
+        }
+
+        .letter-back {
+    background-color: rgb(248, 197, 225);
+    margin-top: -34%;
+    font-family: monospace;
+    height: 575px; /* Example: set height to 200 pixels */
+    transform: rotateY(180deg);
+    font-size: 1.1em;
+    line-height: 2.3;
+    color: #333;
+    transform: rotateX(180deg);
+}
+
+        .letter.open .letter-front {
+            
+            transform: rotateX(-180deg); /* Full rotation */
+        }
+
+        .letter.open .letter-back {
+            transform: rotateY(0deg);
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #5c2a36;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+       
+
+        .back-link {
+    position: absolute;
+    top: 20px; /* Adjust top as needed */
+    right: 20px; /* Position on the right */
+    /* left: 20px;  Remove left positioning */
+    color: #5c2a36;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s;
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+.next-page-buttongg {
+    position: absolute;
+    top: 20px;
+    left: 20px; /* Changed from right to left */
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d13f5c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+    </style>
+</head>
+<body class="letter-page">
+
+    <div class="letter-container">
+        <div class="letter" id="myLetter">
+            <div class="letter-front">
+             
+            </div>
+            <div class="letter-back">
+                <p>Hi love, happy 1 year sa atin! Ang dami na nating memories together in just one year. Remember that time na nag match us sa tinder? Or when we watch together, arcade date, puyat hanggang makatulog isa satin, sendan ng tiktoks, sabay kumain nang magkasama at mag videoke. I love those moments so much. Of course, we also love playing Roblox and Mobile Legends together – you always make me laugh. We've had our share of ups and downs, but I'm so grateful that we've always faced them together. Thank you for loving me nang sobra-sobra. You're so thoughtful and caring. I'm so lucky na nakilala kita at palagi ko yun sasabihin sayo, and I can't imagine my life without you. I love youuu soo muuch, lovey. (๑•ᴗ•๑)♡</p>
+                
+            </div>
+        </div>
+        <a href="1yearhehe.html" class="next-page-buttongg">Back</a>  </div>
+        
+    </div>
+
+    <script>
+        const letter = document.getElementById('myLetter');
+
+        letter.addEventListener('click', () => {
+            letter.classList.toggle('open');
+        });
+    </script>
+
+</body>
+</html>
