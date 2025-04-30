@@ -5,30 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OUR MEMORIES, LOVE</title>
     <style>
-        .body{
-            background-color: #d13f5c;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        /* ... (Existing styles for the letter) ... */
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #f7d5e0, #f8c2d9);
+            margin: 0;
+            min-height: 100vh;
+            background-image: url("sp1.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #5c2a36;
+        }
 
         .gallery-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(to bottom right, #f7d5e0, #f8c2d9);
-            margin: 0;
-            overflow: hidden;
-            perspective: 1000px;
-            background-image: url("sp1.jpg"); /* Add background image */
+            padding: 80px 20px 20px;
+            width: 100%;
         }
 
         .gallery {
-            display: grid;  /* Use CSS Grid */
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
-            gap: 20px; /* Spacing between images */
-            padding: 20px; /* Padding around the gallery */
-            max-width: 1200px; /* Optional: limit gallery width */
-            margin: 0 auto; /* Center the gallery */
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .gallery-item {
@@ -39,8 +48,8 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            transition: transform 0.6s; /* Adjust as needed */
-            transform-style: preserve-3d; /* Important for flipping */
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
         }
 
         .gallery-item img {
@@ -48,107 +57,94 @@
             height: 100%;
             object-fit: cover;
             border-radius: 10px;
-            backface-visibility: hidden; /* Prevent seeing the back */
+            backface-visibility: hidden;
         }
 
         .gallery-item.flipped img {
-            transform: rotateY(180deg); /* Rotate the image */
+            transform: rotateY(180deg);
         }
-        
 
         .gallery-item .description {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* Cover the entire item */
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 20px;
-    box-sizing: border-box;
-    opacity: 0;
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column; /* Use column for vertical alignment */
-    /* Remove justify-content: center; */ /* Allow content to flow */
-    align-items: center;
-    transition: opacity 0.6s, transform 0.6s;
-    overflow-y: auto; /* Add scrollbar if content overflows */
-}
-
-        .gallery-item:hover .description {
-            opacity: 1;
-        }
-
-        .close-button { /* Style for the close button */
             position: absolute;
-            top: 20px;
-            right: 20px;
-            color: rgb(253, 29, 152);
-            font-size: 2em;
-            cursor: pointer;
-            z-index: 1001; /* Above the image */
-            display: none; /* Initially hidden */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s, transform 0.6s;
+            /* Removed overflow-y: auto */
+            font-size: 14px;
+            line-height: 1.4;
+            text-align: center;
+            overflow: hidden; /* Prevents scrolling */
         }
-
-        .gallery-item .description {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto; /* Height adjusts to content */
-    max-height: 100%; /* Prevents overflow */
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 20px;
-    box-sizing: border-box;
-    opacity: 0;
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center horizontally */
-    transition: opacity 0.6s, transform 0.6s;
-    overflow: hidden; /* Hide overflowing text */
-    text-overflow: ellipsis; /* Add ellipsis (...) for overflow */
-    -webkit-line-clamp: 19; /* Limit to 3 lines */
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    word-break: break-word; /* Prevents long words from breaking layout */
-}
 
         .gallery-item.flipped .description {
-    opacity: 1;
-    transform: rotateY(0deg);
-}
-        
-        .next-page-button {
-            display: inline-block;
+            opacity: 1;
+            transform: rotateY(0deg);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
             padding: 10px 20px;
             background-color: #d13f5c;
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            margin-top: 20px; /* Space from the message */
             transition: background-color 0.3s ease;
+            z-index: 100;
         }
 
-        .next-page-button:hover {
+        .back-button:hover {
             background-color: #c03651;
         }
-        .next-page-buttongg {
-    position: absolute;
-    top: 20px;
-    left: 20px; /* Changed from right to left */
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #d13f5c;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            
+            .gallery-item {
+                height: 180px;
+            }
+            
+            .gallery-item .description {
+                padding: 10px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+            
+            .gallery-item {
+                height: 150px;
+            }
+            
+            .back-button {
+                top: 10px;
+                left: 10px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -321,9 +317,18 @@
             </div>
             <a href="1yearhehe.html" class="next-page-buttongg">Back</a>  </div>
     </div>
+    
     <script>
         function toggleFlip(element) {
-            element.classList.toggle("flipped");
+            // Close any currently flipped items
+            document.querySelectorAll('.gallery-item.flipped').forEach(item => {
+                if (item !== element) {
+                    item.classList.remove('flipped');
+                }
+            });
+            
+            // Toggle the clicked item
+            element.classList.toggle('flipped');
         }
     </script>
 </body>

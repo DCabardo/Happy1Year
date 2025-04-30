@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HAPPY ANNIVERSARY, LOVE</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(to bottom right, #f7d5e0, #e0c3cf);
@@ -15,132 +21,175 @@
             justify-content: center;
             min-height: 100vh;
             color: #5c2a36;
-            overflow: hidden;
-            background-image: url("hihi.jpg"); /* Add background image */
-            background-size: cover; /* Cover the entire background */
-            background-repeat: no-repeat; /* Prevent image repetition */
-            background-position: center; /* Center the image */
+            background-image: url("hihi.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 20px;
         }
 
         .container {
             text-align: center;
-            padding: 40px;
-            background-color: rgb(250, 162, 162);
+            padding: 30px;
+            background-color: rgba(250, 162, 162, 0.9);
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            max-width: 600px; /* Adjusted width */
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            backdrop-filter: blur(5px);
         }
 
         img {
-            max-width: 100%; /* Image fits container */
+            max-width: 100%;
             height: auto;
             border-radius: 10px;
             margin-bottom: 20px;
+            max-height: 40vh;
         }
 
-        .buttons {
+        p {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .buttons-container {
             display: flex;
             justify-content: center;
-            gap: 20px; /* Space between buttons */
+            gap: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            min-height: 100px;
+            margin-bottom: 20px;
         }
 
-        button {
-            padding: 10px 20px;
+        .action-button {
+            padding: 12px 25px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease; /* Smooth hover */
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: bold;
+            z-index: 10;
+            position: relative;
         }
-
-        .next-page-button {
-    position: absolute; /* Key for positioning */
-    top: 20px; /* Adjust from the top */
-    right: 20px; /* Adjust from the right */
-    /* Remove or adjust these as needed */
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #d13f5c;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    /* margin-top: 20px; Remove or adjust as needed */
-    transition: background-color 0.3s ease;
-}
 
         #yes-button {
             background-color: #d13f5c;
             color: white;
-            margin-bottom: 20%;
-            
         }
 
         #yes-button:hover {
-            background-color: #ddd;
+            background-color: #e74c6d;
+            transform: scale(1.05);
         }
 
         #no-button {
             background-color: #c03651;
             color: white;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            position: absolute; /* Essential for random positioning */
-           
-            margin-right: -3px;
-            margin-top: 10vh;
+            transition: all 0.2s ease;
+            position: absolute;
         }
 
         #no-button:hover {
-            background-color: #ddd;
-    
+            background-color: #d13f5c;
         }
 
-        .next-page-button {
-            display: inline-block; /* Make it a block element */
-            padding: 10px 20px; /* Adjust padding as needed */
-            background-color: #d13f5c; /* Use a color that matches your design */
+        .nav-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #d13f5c;
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            margin-top: 20px; /* Add some space above the button */
-            transition: background-color 0.3s ease; /* Smooth hover effect */
+            transition: background-color 0.3s ease;
+            z-index: 100;
         }
 
+        .nav-button:hover {
+            background-color: #e74c6d;
+        }
 
+        /* Mobile-specific adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .buttons-container {
+                gap: 15px;
+                min-height: 80px;
+            }
+            
+            .action-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-button {
+                top: 10px;
+                right: 10px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            img {
+                max-height: 30vh;
+            }
+        }
+
+        /* Tablet adjustments */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .container {
+                max-width: 500px;
+            }
+        }
     </style>
 </head>
 <body>
+    <a href="try.html" class="nav-button">Play this first</a>
 
     <div class="container">
-        <img src="Spider man and hello kitty.jpg" alt="Anniversary Image" width="300" height="200">
+        <img src="Spider man and hello kitty.jpg" alt="Anniversary Image">
         <p>DO YOU LOVE ME? HEHE</p>
-          <div class="buttons">
-            <button id="yes-button">Yes!</button>
-            <button id="no-button">No</button>
-            
-          
+        <div class="buttons-container">
+            <button id="yes-button" class="action-button">Yes!</button>
+            <button id="no-button" class="action-button">No</button>
         </div>
     </div>
-    <a href="try.html" class="next-page-button">Play this first</a>  </div>
     
     <script>
         const yesButton = document.getElementById('yes-button');
         const noButton = document.getElementById('no-button');
-        const buttonsContainer = document.querySelector('.buttons'); // Get the container
+        const buttonsContainer = document.querySelector('.buttons-container');
 
         yesButton.addEventListener('click', () => {
             window.location.href = '1yearhehe.html';
         });
 
         noButton.addEventListener('click', () => {
-            const maxX = buttonsContainer.offsetWidth - noButton.offsetWidth; // Boundaries
-            const maxY = buttonsContainer.offsetHeight - noButton.offsetHeight;
+            const containerRect = buttonsContainer.getBoundingClientRect();
+            const buttonRect = noButton.getBoundingClientRect();
+            
+            const maxX = containerRect.width - buttonRect.width;
+            const maxY = containerRect.height - buttonRect.height;
 
             const randomX = Math.floor(Math.random() * maxX);
             const randomY = Math.floor(Math.random() * maxY);
 
-            noButton.style.left = randomX + 'px'; // Set new position
+            noButton.style.left = randomX + 'px';
             noButton.style.top = randomY + 'px';
         });
-    </script>
 
+        // Initial position for the "No" button
+        noButton.style.position = 'absolute';
+        noButton.style.left = '50%';
+        noButton.style.top = '0';
+        noButton.style.transform = 'translateX(-50%)';
+    </script>
 </body>
 </html>

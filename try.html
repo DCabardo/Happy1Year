@@ -5,38 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YOU ARE THE ONLY EXCEPTION, BIANCHE</title>
   <style>
-    body {
-      font-family: sans-serif;
-      background-image: url("spman.jpg"); /* Add background image */
-      color: white;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-image: url("spman.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100vh;
+      justify-content: center;
+      padding: 20px;
     }
 
     .container {
       display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 20px;
+      width: 100%;
+      max-width: 1200px;
     }
 
     .player-container {
-      width: 400px;
-      background-color: #181818;
+      width: 100%;
+      max-width: 400px;
+      background-color: rgba(24, 24, 24, 0.9);
       border-radius: 15px;
-      padding: 30px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
     }
 
     .album-art {
       width: 100%;
       max-width: 300px;
-      height: 300px;
+      height: auto;
+      aspect-ratio: 1/1;
       margin-bottom: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -45,17 +61,19 @@
     .song-info {
       text-align: center;
       margin-bottom: 20px;
+      width: 100%;
     }
 
     .song-info h2 {
-      font-size: 1.8em;
+      font-size: clamp(1.5rem, 5vw, 1.8rem);
       margin: 0;
     }
 
     .song-info p {
-      font-size: 1.1em;
-      margin: 5px 0;
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
+      margin: 10px 0;
       color: #b3b3b3;
+      line-height: 1.5;
     }
 
     .controls {
@@ -92,17 +110,18 @@
       display: flex;
       justify-content: center;
       width: 100%;
-      gap: 20px;
+      gap: 15px;
       align-items: center;
+      margin-top: 10px;
     }
 
     .play-btn, .skip-btn {
       background-color: #1ed760;
       color: white;
       border: none;
-      width: 60px;
-      height: 60px;
-      font-size: 20px;
+      width: 50px;
+      height: 50px;
+      font-size: 16px;
       font-weight: bold;
       border-radius: 50%;
       cursor: pointer;
@@ -113,57 +132,114 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
+    .play-btn {
+      width: 60px;
+      height: 60px;
+      font-size: 20px;
+    }
+
+    .play-btn:hover, .skip-btn:hover {
+      background-color: #1db954;
+      transform: scale(1.05);
+    }
+
     .lyrics-container {
-      width: 400px;
-      height: 500px;
+      width: 100%;
+      max-width: 400px;
+      max-height: 500px;
       overflow-y: auto;
       text-align: left;
       padding: 20px;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.7);
       border-radius: 10px;
+      margin-top: 20px;
+      display: none; /* Hidden by default */
     }
 
-    .next-page-buttongg {
-    position: absolute;
-    top: 20px;
-    left: 20px; /* Changed from right to left */
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #d13f5c;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #d13f5c;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      font-size: 0.9rem;
+      z-index: 100;
+    }
+
+    .back-button:hover {
+      background-color: #c03651;
+    }
+
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      
+      .lyrics-container {
+        display: block;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .player-container {
+        padding: 15px;
+      }
+      
+      .album-art {
+        max-width: 250px;
+      }
+      
+      .back-button {
+        top: 10px;
+        left: 10px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+      }
+      
+      .button-wrapper {
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="player-container">
-    <img src="28.jpg" class="album-art" alt="Album Art">
-    <div class="song-info">
-      <h2>The Only Exception</h2>
-      <p>Paramore</p>
-      <p>I dedicate this song to you because you are the only exception for me. I've come to appreciate this song even more because it reminds me of the fun times we had when we are at the videoke.</p>
-    </div>
+  <a href="index.html" class="back-button">Back</a>
 
-    <div class="controls">
-      <audio id="myAudio">
-        <source src="Paramore_ The Only Exception [OFFICIAL VIDEO].mp3" type="audio/mpeg">
-      </audio>
-
-      <div class="progress-bar">
-        <div class="progress" id="progress"></div>
+  <div class="container">
+    <div class="player-container">
+      <img src="28.jpg" class="album-art" alt="Album Art">
+      <div class="song-info">
+        <h2>The Only Exception</h2>
+        <p>Paramore</p>
+        <p>I dedicate this song to you because you are the only exception for me. I've come to appreciate this song even more because it reminds me of the fun times we had when we are at the videoke.</p>
       </div>
 
-      <div class="button-wrapper">
-        <button id="backwardBtn" class="skip-btn"><-</button>
-        <button id="playPauseBtn" class="play-btn">▶</button>
-        <button id="forwardBtn" class="skip-btn">-></button>
+      <div class="controls">
+        <audio id="myAudio">
+          <source src="Paramore_ The Only Exception [OFFICIAL VIDEO].mp3" type="audio/mpeg">
+        </audio>
+
+        <div class="progress-bar">
+          <div class="progress" id="progress"></div>
+        </div>
+
+        <div class="button-wrapper">
+          <button id="backwardBtn" class="skip-btn"><-</button>
+          <button id="playPauseBtn" class="play-btn">▶</button>
+          <button id="forwardBtn" class="skip-btn">-></button>
+        </div>
       </div>
     </div>
   </div>
-  <a href="homepage.html" class="next-page-buttongg">Back</a>  </div>
+
   <script>
     var audio = document.getElementById("myAudio");
     var playPauseBtn = document.getElementById("playPauseBtn");
@@ -194,6 +270,11 @@
     audio.addEventListener("timeupdate", function() {
       var progress = (audio.currentTime / audio.duration) * 100;
       progressBar.style.width = progress + "%";
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      // You can add responsive JS logic here if needed
     });
   </script>
 </body>

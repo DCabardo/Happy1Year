@@ -5,189 +5,206 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HAPPY ANNIVERSARY, LOVE</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom right, #f7d5e0, #e0c3cf); /* Light pink gradient */
+            background: linear-gradient(to bottom right, #f7d5e0, #e0c3cf);
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            color: #5c2a36; /* Darker pink text */
-            overflow: hidden; /* Hide scrollbars for background effect */
-            background-image: url("download (9)_3.jpg"); /* Add background image */
+            color: #5c2a36;
+            overflow-x: hidden;
+            background-image: url("download (9)_3.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 20px;
         }
 
         .container {
             text-align: center;
-            padding: 70px;
-            background-color: rgb(250, 178, 200);
+            padding: 30px;
+            background-color: rgba(250, 178, 200, 0.9);
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-            max-width: 900px; /* Adjust as needed */
-            margin-top: 30px; /* Adjust for initial position */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 900px;
+            margin: 80px 0 30px;
+            position: relative;
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 2em;
             margin-bottom: 20px;
-            color: #ff4e4e; /* Brighter pink for the title */
+            color: #ff4e4e;
         }
 
         .message {
-            font-size: 1.2em;
+            font-size: 1em;
             line-height: 1.6;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .image-gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
+            margin-bottom: 20px;
         }
-        .back-link {
-            position: absolute;
-            top: 20px; /* Adjust top as needed */
-            left: 20px; /* Adjust left as needed */
-            color: #5c2a36;
-            text-decoration: none;
-            font-size: 1.1em;
-            transition: color 0.3s;
-            z-index: 10; /* Ensure it's above other elements */
-        }
-
 
         .image-gallery img {
-            width: 250px; /* Adjust image size */
-            height: 250px;
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            aspect-ratio: 1/1;
             border-radius: 10px;
             object-fit: cover;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease; /* Smooth hover effect */
+            transition: transform 0.3s ease;
         }
+
         .image-gallery img:hover {
-            transform: scale(1.05); /* Slightly enlarge on hover */
+            transform: scale(1.05);
         }
 
         .footer {
-            margin-top: 50px;
+            margin-top: 30px;
             font-size: 0.9em;
-            color: #7a3744; /* Even darker pink for footer */
+            color: #7a3744;
         }
 
-        .next-page-button {
-            display: inline-block; /* Make it a block element */
-            padding: 10px 20px; /* Adjust padding as needed */
-            background-color: #d13f5c; /* Use a color that matches your design */
+        /* Button Styles */
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #d13f5c;
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            margin-top: 20px; /* Add some space above the button */
-            transition: background-color 0.3s ease; /* Smooth hover effect */
+            margin: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 0.9em;
         }
 
-        .next-page-button1 {
-            display: inline-block; /* Make it a block element */
-            padding:7px 10px; /* Adjust padding as needed */
-            background-color: #d13f5c; /* Use a color that matches your design */
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: -30px; /* Add some space above the button */
-            transition: background-color 0.3s ease; /* Smooth hover effect */
+        .button:hover {
+            background-color: #c03651;
         }
 
-        .next-page-button:hover {
-            background-color: #c03651; /* Darker shade on hover */
+        /* Navigation Buttons */
+        .nav-button {
+            position: fixed;
+            z-index: 100;
         }
 
-        .next-page-buttong {
-    position: absolute; /* Key for positioning */
-    top: 120px; /* Adjust from the top */
-    right: 20px; /* Adjust from the right */
-    /* Remove or adjust these as needed */
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #d13f5c;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    /* margin-top: 20px; Remove or adjust as needed */
-    transition: background-color 0.3s ease;
-}
+        .back-button {
+            top: 20px;
+            left: 20px;
+        }
 
-.next-page-buttongg1 {
-    position: absolute; /* Key for positioning */
-    top: 70px; /* Adjust from the top */
-    right: 20px; /* Adjust from the right */
-    /* Remove or adjust these as needed */
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #d13f5c;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    /* margin-top: 20px; Remove or adjust as needed */
-    transition: background-color 0.3s ease;
-}
-.next-page-buttong1 {
-    position: absolute; /* Key for positioning */
-    top: 20px; /* Adjust from the top */
-    right: 20px; /* Adjust from the right */
-    /* Remove or adjust these as needed */
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #d13f5c;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    /* margin-top: 20px; Remove or adjust as needed */
-    transition: background-color 0.3s ease;
-}
-.next-page-buttongg {
-    position: absolute;
-    top: 20px;
-    left: 20px; /* Changed from right to left */
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #d13f5c;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
+        .surprise-button {
+            top: 20px;
+            right: 20px;
+        }
 
-        
+        .surprise-button-alt {
+            top: 70px;
+            right: 20px;
+        }
 
-       
+        .gallery-button {
+            top: 120px;
+            right: 20px;
+        }
 
-        
+        .content-button {
+            margin: 10px auto;
+            display: block;
+            width: fit-content;
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3em;
+            }
+
+            .message {
+                font-size: 1.2em;
+            }
+
+            .button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            .container {
+                padding: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                margin-top: 100px;
+            }
+
+            .image-gallery img {
+                max-width: 150px;
+            }
+
+            .nav-button {
+                position: absolute;
+            }
+
+            .back-button {
+                top: 10px;
+                left: 10px;
+            }
+
+            .surprise-button {
+                top: 10px;
+                right: 10px;
+            }
+
+            .surprise-button-alt {
+                top: 50px;
+                right: 10px;
+            }
+
+            .gallery-button {
+                top: 90px;
+                right: 10px;
+            }
+        }
     </style>
 </head>
 <body>
-    
-
-    
+    <!-- Navigation Buttons -->
+    <a href="index.html" class="button nav-button back-button">Back</a>
+    <a href="surprise.html" class="button nav-button surprise-button">Surprise hihi</a>
+    <a href="heart_beat-animation.html" class="button nav-button surprise-button-alt">Surprise ulit</a>
+    <a href="gallery.html" class="button nav-button gallery-button">Gallery</a>
 
     <div class="container">
         <h1>HAPPY ONE YEAR, LOVEY (๑•ᴗ•๑)♡</h1>
-
-       
+        
         <div class="image-gallery">
-            <img src="Herr ❤️.jpg" alt="Image 1">  <img src="download (12).jpg" alt="Image 2">
+            <img src="Herr ❤️.jpg" alt="Image 1">
+            <img src="download (12).jpg" alt="Image 2">
             <img src="download (14).jpg" alt="Image 3">
-            
-            </div>
+        </div>
 
-        <a href="letter.html" class="next-page-button">Letter</a>  </div>
-        <a href="time.html" class="next-page-button1">Clock</p></a>  </div>
-        <a href="gallery.html" class="next-page-buttong">Gallery</a>  </div>
+        <a href="letter.html" class="button content-button">Letter</a>
+        <a href="time.html" class="button content-button">Clock</a>
     </div>
-    <a href="index.html" class="next-page-buttongg">Back</a>  </div>
-    <a href="heart_beat-animation.html" class="next-page-buttongg1">Surprise ulit</a>  </div>
-    <a href="surprise.html" class="next-page-buttong1">Surprise hihi</a>  </div>
-
 </body>
 </html>
